@@ -1,65 +1,21 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <pybind11/stl_bind.h>
+#include "diagram_calculator.cpp"
 #include <iostream>
-#include <Eigen/Dense>
-#include <Eigen/Jacobi>
 
- 
-using Eigen::MatrixXd;
-
-int matrix_fun()
-{
-  MatrixXd m(2, 2);
-  m(0, 0) = 3;
-  m(1, 0) = 2.5;
-  m(0, 1) = -1;
-  m(1, 1) = m(1,0) + m(0,1);
-  std::cout << m << std::endl;
-  return 0;
-}
-
-// Simple function to export
-int add(int x, int y) { return x + y; }
-
-// Class with properties and a function
-class Adder {
-public:
-  explicit Adder(int x) : x_(x){};
-  int add(int y) { return x_ + y; }
-
-  void setAddition(int x) { x_ = x; }
-  int getAddition() { return x_; }
-
-private:
-  int x_;
-};
-
-// using the stl
-std::string join(std::vector<std::string> tojoin) {
-  std::string ret;
-  for (auto c : tojoin) {
-    ret += c;
-  }
-  return ret;
-}
+namespace py = pybind11;
 
 // define a module to be imported by python
-PYBIND11_MODULE(diagram_calculator, mymodule) {
-  using namespace pybind11::literals; // for _a literal to define arguments
-  mymodule.doc() = "example module to export code";
+PYBIND11_MODULE(diagram_calculator, m) {
+  using namespace pybind11::literals;
+  m.doc() = "diagram calculator module";
 
-  // export the add function
-  mymodule.def("add", &add, "Add 2 numbers together", "x"_a, "y"_a);
-  mymodule.def("matrix_fun", &matrix_fun, "");
-
-
-  // export the Adder class
-  pybind11::class_<Adder>(mymodule, "Adder")
-      .def(pybind11::init<int>())
-      .def("add", &Adder::add)
-      .def_property("addition", &Adder::getAddition, &Adder::setAddition);
-
-  // export the join method
-  mymodule.def("join", &join, "Join a list into a string", "tojoin"_a);
+  py::class_<DiagramCalculator>(m, "DiagramCalculator")
+    // .def(py::init<int>())
+    .def(py::init<int>())
+    .def("copy_matrix", &DiagramCalculator::getMatrix) // Makes a copy!
+    .def("get_matrix", &DiagramCalculator::getMatrix, py::return_value_policy::reference_internal)
+    .def("view_matrix", &DiagramCalculator::viewMatrix, py::return_value_policy::reference_internal)
+    .def("modify_matrix", &DiagramCalculator::modifyMatrix, py::return_value_policy::reference_internal, py::arg().noconvert());
 }
