@@ -12,10 +12,3 @@ target_link_libraries(diagram_calculator PRIVATE Eigen3::Eigen)
 message("${pybind11_VERSION}")
 message("${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
 message("Building with Eigen v${EIGEN3_VERSION_STRING}")
-enable_testing()
-
-add_test(NAME pybindings_test
-    COMMAND python3 ${CMAKE_SOURCE_DIR}/main.py)
-#need pythonpath to import module
-set_tests_properties (pybindings_test PROPERTIES ENVIRONMENT
-    "PYTHONPATH=${pybind-example_BINARY_DIR}")
