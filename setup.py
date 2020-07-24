@@ -47,10 +47,10 @@ class CMakeBuild(build_ext):
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
 
 setup(
-    name='diagram_calculator',
+    name='beam_pattern_calculator',
     version='1.0.0',
     author='Agazade Khanagha',
-    ext_modules=[CMakeExtension('diagram_calculator')],
+    ext_modules=[CMakeExtension('beam_pattern_calculator')],
     cmdclass=dict(build_ext=CMakeBuild),
     zip_safe=False,
 )
