@@ -10,24 +10,24 @@ class TestWrongInput(unittest.TestCase):
         start_elevation, end_elevation = -50, 50
         n_azimuths, n_elevations = 100, 100
         main_lobe, side_lobe = 1, 2
-        petal_width_azimuth, petal_width_elevation = 3, 4
+        lobe_width_azimuth, lobe_width_elevation = 3, 4
         self.assertRaises(ValueError, beam_pattern_calculator.BeamPatternCalculator, start_azimuth, end_azimuth,
             start_elevation, end_elevation,
             n_azimuths, n_elevations,
             main_lobe, side_lobe,
-            petal_width_azimuth, petal_width_elevation)
+            lobe_width_azimuth, lobe_width_elevation)
 
     def test_wrong_angle2(self):
         start_azimuth, end_azimuth = 100, 60
         start_elevation, end_elevation = -50, 50
         n_azimuths, n_elevations = 100, 100
         main_lobe, side_lobe = 1, 2
-        petal_width_azimuth, petal_width_elevation = 3, 4
+        lobe_width_azimuth, lobe_width_elevation = 3, 4
         self.assertRaises(ValueError, beam_pattern_calculator.BeamPatternCalculator, start_azimuth, end_azimuth,
             start_elevation, end_elevation,
             n_azimuths, n_elevations,
             main_lobe, side_lobe,
-            petal_width_azimuth, petal_width_elevation)
+            lobe_width_azimuth, lobe_width_elevation)
 
 class TestValidResult(unittest.TestCase):
 
@@ -36,12 +36,12 @@ class TestValidResult(unittest.TestCase):
         start_elevation, end_elevation = -50, 50
         n_azimuths, n_elevations = 100, 100
         main_lobe, side_lobe = 1, 2
-        petal_width_azimuth, petal_width_elevation = 3, 4
+        lobe_width_azimuth, lobe_width_elevation = 3, 4
         dc = beam_pattern_calculator.BeamPatternCalculator(start_azimuth, end_azimuth,
         start_elevation, end_elevation,
         n_azimuths, n_elevations,
         main_lobe, side_lobe,
-        petal_width_azimuth, petal_width_elevation)
+        lobe_width_azimuth, lobe_width_elevation)
 
         installation_angles = np.asarray([[30, 20], [25, 15], [10, 40]], dtype='float64')
         diagram_matrix = dc.calculate(installation_angles)

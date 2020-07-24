@@ -11,7 +11,7 @@ class BeamPatternCalculator {
     double start_azimuth, end_azimuth, start_elevation, end_elevation;
     int n_azimuths, n_elevations;
     double main_lobe, side_lobe;
-    double petal_width_azimuth, petal_width_elevation;
+    double lobe_width_azimuth, lobe_width_elevation;
 
     Eigen::MatrixXd calculateDiagram(double, double);
 

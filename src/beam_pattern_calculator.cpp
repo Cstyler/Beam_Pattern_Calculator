@@ -4,12 +4,12 @@ BeamPatternCalculator::BeamPatternCalculator(double start_azimuth, double end_az
     double start_elevation, double end_elevation,
     int n_azimuths, int n_elevations,
     double main_lobe, double side_lobe,
-    double petal_width_azimuth, double petal_width_elevation) :
+    double lobe_width_azimuth, double lobe_width_elevation) :
     start_azimuth(start_azimuth), end_azimuth(end_azimuth),
     start_elevation(start_elevation), end_elevation(end_elevation),
     n_azimuths(n_azimuths), n_elevations(n_elevations),
     main_lobe(main_lobe), side_lobe(side_lobe),
-    petal_width_azimuth(petal_width_azimuth), petal_width_elevation(petal_width_elevation) {
+    lobe_width_azimuth(lobe_width_azimuth), lobe_width_elevation(lobe_width_elevation) {
         if (!(-90. < start_azimuth && start_azimuth < 90.)) {
             throw std::invalid_argument("Start azimuth must be in [-90, 90]");
         }
