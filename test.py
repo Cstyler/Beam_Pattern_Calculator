@@ -45,7 +45,7 @@ class TestValidResult(unittest.TestCase):
 
         installation_angles = np.asarray([[30, 20], [25, 15], [10, 40]], dtype='float64')
         diagram_matrix = dc.calculate(installation_angles)
-        self.assertEqual(diagram_matrix.shape, (3, 2))
+        self.assertEqual(diagram_matrix.shape, (1, 3, 2))
 
 if __name__ == '__main__':
     unittest.main()

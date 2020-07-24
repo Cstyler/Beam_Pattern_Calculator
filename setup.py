@@ -50,7 +50,8 @@ setup(
     name='beam_pattern_calculator',
     version='1.0.0',
     author='Agazade Khanagha',
-    ext_modules=[CMakeExtension('beam_pattern_calculator')],
+    ext_modules=[CMakeExtension('beam_pattern_calculator_bind')],
     cmdclass=dict(build_ext=CMakeBuild),
+    py_modules=['beam_pattern_calculator'],
     zip_safe=False,
 )

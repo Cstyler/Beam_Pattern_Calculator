@@ -2,7 +2,7 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(beam_pattern_calculator, m) {
+PYBIND11_MODULE(beam_pattern_calculator_bind, m) {
   m.doc() = "beam pattern calculator module";
 
   py::class_<BeamPatternCalculator>(m, "BeamPatternCalculator")

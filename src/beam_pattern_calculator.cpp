@@ -31,14 +31,16 @@ BeamPatternCalculator::BeamPatternCalculator(double start_azimuth, double end_az
         }
     }
 
-Eigen::MatrixXd BeamPatternCalculator::calculate(const py::EigenDRef<const Eigen::MatrixXd> installation_angles) {
+std::vector<Eigen::MatrixXd> BeamPatternCalculator::calculate(const py::EigenDRef<const Eigen::MatrixXd> installation_angles) {
     if (installation_angles.cols() != 2) {
         throw std::invalid_argument("Angles matrix shape should be (n, 2)");
     }
+    std::vector<Eigen::MatrixXd> res;
+    res.push_back(installation_angles);
     for (int i = 0; i < installation_angles.rows(); ++i) {
         Eigen::MatrixXd a = calculateDiagram(installation_angles(i, 0), installation_angles(i, 1));
     }
-    return installation_angles;
+    return res;
 }
 
 Eigen::MatrixXd BeamPatternCalculator::calculateDiagram(double installation_azimuth, double installation_elevation) {

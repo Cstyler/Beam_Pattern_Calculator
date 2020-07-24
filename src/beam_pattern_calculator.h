@@ -2,6 +2,7 @@
 #define SRC_BEAM_PATTERN_CALCULATOR_H_
 
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 #include <pybind11/eigen.h>
 #include <iostream>
 
@@ -18,7 +19,7 @@ class BeamPatternCalculator {
  public:
     explicit BeamPatternCalculator(double, double, double, double, int, int, double, double, double, double);
 
-    Eigen::MatrixXd calculate(const py::EigenDRef<const Eigen::MatrixXd>);
+    std::vector<Eigen::MatrixXd> calculate(const py::EigenDRef<const Eigen::MatrixXd>);
 };
 
 #endif  // SRC_BEAM_PATTERN_CALCULATOR_H_
