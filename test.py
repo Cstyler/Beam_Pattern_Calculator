@@ -2,7 +2,7 @@ import diagram_calculator
 import numpy as np
 
 def main():
-    start_azimuth, end_azimuth = -60, 60
+    start_azimuth, end_azimuth = -100, 60
     start_elevation, end_elevation = -50, 50
     n_azimuths, n_elevations = 100, 100
     main_petal, side_petal = 1, 2

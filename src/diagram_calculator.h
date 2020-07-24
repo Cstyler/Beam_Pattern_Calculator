@@ -14,10 +14,11 @@ class DiagramCalculator {
     double petal_width_azimuth, petal_width_elevation;
 
     Eigen::MatrixXd calculateDiagram(double, double);
-public:
+
+ public:
     explicit DiagramCalculator(double, double, double, double, int, int, double, double, double, double);
 
     Eigen::MatrixXd calculate(const py::EigenDRef<const Eigen::MatrixXd>);
 };
 
-#endif // DIAGRAM_CALCULATOR_H_
+#endif  // DIAGRAM_CALCULATOR_H_

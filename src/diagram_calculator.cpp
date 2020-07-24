@@ -5,29 +5,31 @@ DiagramCalculator::DiagramCalculator(double start_azimuth, double end_azimuth,
     int n_azimuths, int n_elevations,
     double main_petal, double side_petal,
     double petal_width_azimuth, double petal_width_elevation) :
-    start_azimuth(start_azimuth), end_azimuth(end_azimuth), start_elevation(start_elevation), end_elevation(end_elevation),
+    start_azimuth(start_azimuth), end_azimuth(end_azimuth),
+    start_elevation(start_elevation), end_elevation(end_elevation),
     n_azimuths(n_azimuths), n_elevations(n_elevations),
     main_petal(main_petal), side_petal(side_petal),
     petal_width_azimuth(petal_width_azimuth), petal_width_elevation(petal_width_elevation) {
-        if (! (-90. < start_azimuth < 90.)) {
-            std::cout << "Start azimuth must be in [-90, 90]" << std::endl;
+        std::cout << start_azimuth << std::endl;
+        if (!(-90. < start_azimuth < 90.)) {
+            throw std::invalid_argument("Start azimuth must be in [-90, 90]");
         }
-        if (! (-90. < end_azimuth < 90.)) {
+        if (!(-90. < end_azimuth < 90.)) {
             std::cout << "End azimuth must be in [-90, 90]" << std::endl;
         }
         if (start_azimuth > end_azimuth) {
             std::cout << "Start azimuth greater then end" << std::endl;
         }
-        if (! (-90. < start_elevation < 90.)) {
+        if (!(-90. < start_elevation < 90.)) {
             std::cout << "Start elevation must be in [-90, 90]" << std::endl;
         }
-        if (! (-90. < end_elevation < 90.)) {
+        if (!(-90. < end_elevation < 90.)) {
             std::cout << "End elevation must be in [-90, 90]" << std::endl;
         }
         if (start_elevation > end_elevation) {
             std::cout << "Start elevation greater then end" << std::endl;
-        }  
-    };
+        }
+    }
 
 Eigen::MatrixXd DiagramCalculator::calculate(const py::EigenDRef<const Eigen::MatrixXd> installation_angles) {
     if (installation_angles.cols() != 2) {
