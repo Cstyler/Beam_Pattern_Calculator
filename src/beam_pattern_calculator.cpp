@@ -46,12 +46,13 @@ std::vector<Eigen::MatrixXd> BeamPatternCalculator::calculate(
     }
     std::vector<Eigen::MatrixXd> grid_vector;
     for (int i = 0; i < installation_angles.rows(); ++i) {
-        grid_vector.push_back(calculateDiagram(installation_angles(i, 0), installation_angles(i, 1)));
+        grid_vector.push_back(calculateBeamPattern(installation_angles(i, 0), installation_angles(i, 1)));
     }
     return grid_vector;
 }
 
-Eigen::MatrixXd BeamPatternCalculator::calculateDiagram(double installation_azimuth, double installation_elevation) {
+Eigen::MatrixXd BeamPatternCalculator::calculateBeamPattern(double installation_azimuth,
+    double installation_elevation) {
     if (!(-90. < installation_azimuth && installation_azimuth < 90.)) {
         throw std::invalid_argument("Installation azimuth must be in [-90, 90]");
     }

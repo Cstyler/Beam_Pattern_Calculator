@@ -5,7 +5,6 @@
 #include <pybind11/stl.h>
 #include <pybind11/eigen.h>
 #include <cmath>
-#include <iostream>
 
 namespace py = pybind11;
 
@@ -16,7 +15,7 @@ class BeamPatternCalculator {
     double lobe_width_azimuth_, lobe_width_elevation_;
     double azimuth_angle_step_, elevation_angle_step_, cos1_coeff_, cos2_coeff_;
 
-    Eigen::MatrixXd calculateDiagram(double, double);
+    Eigen::MatrixXd calculateBeamPattern(double, double);
  public:
     explicit BeamPatternCalculator(double, double, double, double, int, int, double, double, double, double);
 
